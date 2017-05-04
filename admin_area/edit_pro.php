@@ -25,17 +25,22 @@ if(isset($_GET['edit_pro'])){
 <html>
 <head>
   <title>Update Item</title>
+  <style>
+  td{
+  padding-top: 16px;
+  }
+  </style>
 </head>
 <body bgcolor="skyblue">
 <form action="" method="post" enctype="multipart/form-data">
-  <table align="center" width="795" border="2" bgcolor="orange">
+  <table align="center" width="795" height="306" border="2" bgcolor="orange">
    <tr align="center">   
      <td colspan="6"><h2>Edit & Update Item</h2></td>
    </tr>
    <tr>
      <td align="right"><b>Item Category:</b></td>
 	 <td>
-	     <select name="item_cat" required>
+	     <select name="item_cat" required="required">
 	         <option>Select a Category</option>
 	         <?php
 			 $get_category="SELECT * FROM categories where customer_email='$user_email'";
@@ -52,18 +57,18 @@ if(isset($_GET['edit_pro'])){
    </tr>
    <tr>
      <td align="right"><b>Item Discription:</b></td>
-	 <td><textarea name="item_desc"><?php echo $item_description; ?></textarea></td>
+	 <td><textarea name="item_desc" required="required"><?php echo $item_description; ?></textarea></td>
    </tr>
    <tr>
      <td align="right"><b>Item Picture:</b></td>
-	 <td><input type="file" name="item_pic" required/><img src="item_images/<?php echo $item_picture; ?>" width="20px" height="20px"></td>
+	 <td><input type="file" name="item_pic" required="required"/><img src="item_images/<?php echo $item_picture; ?>" width="40px" height="40px"></td>
    </tr>
    <tr>
      <td align="right"><b>Item Status:</b></td>
-	 <td><input type="text" name="item_st" value="<?php echo $item_status; ?>" required/></td>
+	 <td><input type="text" name="item_st" value="<?php echo $item_status; ?>" required="required"/></td>
    </tr>
    <tr align="center">
-	 <td colspan="6"><input type="submit" name="update_item" value="Update Now"/></td>
+	 <td colspan="3"><input type="submit" name="update_item" value="Update Now"/></td>
    </tr>
   </table>
 </form>

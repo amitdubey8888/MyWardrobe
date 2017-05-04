@@ -3,8 +3,8 @@
   
   include("includes/database.php");
 
-  if(isset($_POST['signin']))
-  {
+if(isset($_POST['signin']))
+{
 	  $c_email=$_POST['email'];
 
 	  $c_pass=$_POST['psw'];
@@ -14,6 +14,10 @@
 	  $run_customer=mysql_query($sel_customer);
 
 	  $check_customer=mysql_num_rows($run_customer);
+	  
+	  $login_date=mysql_fetch_array($run_customer);
+	  
+	  $get_date=$login_date['Last_login'];
 
 	  if($check_customer==0)
 	  {  
@@ -24,7 +28,7 @@
 		exit();
 	  }
 	  
-	  $update_query="update customer set last_login=NOW() where customer_pass='$c_pass' AND customer_email='$c_email'";
+	  $update_query="update customer set Last_login=NOW() where customer_pass='$c_pass' AND customer_email='$c_email'";
 	  
 	  $run_query=mysql_query($update_query);
 	  
@@ -32,13 +36,15 @@
 	  {
     	$_SESSION['customer_email']=$c_email;
 		
+		$_SESSION['Last_login']=$get_date;
+		
 		echo "<script>alert('You have logged in successfully!')</script>";
 		
 		echo "<script>window.open('admin_area/index.php','_self')</script>";
 	  }
-	}
-	else if(isset($_POST['signup']))
- {
+}
+else if(isset($_POST['signup']))
+{
 		$c_email=mysql_real_escape_string($_POST['email']);
 
 		$c_pass=mysql_real_escape_string($_POST['psw']);
@@ -85,17 +91,18 @@
 		exit();
 	}
 	
-	$c_query= "insert into customer (customer_email, customer_pass) values ('$c_email', '$c_pass')";
+	$c_query= "insert into customer (customer_email, customer_pass, Last_login) values ('$c_email', '$c_pass', NOW())";
 	    
     $run_query=mysql_query($c_query) or die('Unable to process your query');
 	
 	if($run_query)
 	{   
-        $_SESSION['customer_email']=$c_email;
         
-		echo "<script>alert('Thanks for sign up!')</script>";
+		echo "<script>alert('Thanks for sign up, Please login with your email & password!')</script>";
 		
-		echo "<script>window.open('admin_area/index.php','_self')</script>";
+		echo "<script>window.open('index.php','_self')</script>";
+		
+		exit();
 	}
 	else
 	{
@@ -103,6 +110,5 @@
 		
 		echo "<script>window.open('index.php','_self')</script>";
 	}
-  }
-	
+}
 ?>

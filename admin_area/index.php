@@ -1,6 +1,7 @@
 <?php
   session_start();
   $user_email=$_SESSION['customer_email'];
+  $get_date=$_SESSION['Last_login'];
   if(!isset($_SESSION['customer_email']))
    {
       header('Location: index.php?error=Login_First');
@@ -19,7 +20,7 @@
  </div>
  <div id="right">
          <h2 style="text-align:center">Manage Your Wardrobe</h2>
-		 
+		 <a href="index.php?my_account">My Account</a>
 		 <a href="index.php?insert_product">Insert Item</a>
 		 <a href="index.php?view_products">View Item</a>
 		 <a href="index.php?insert_cat">Insert Category</a>
@@ -28,6 +29,10 @@
  </div>
  <div id="left">
  <?php
+     if(isset($_GET['my_account']))
+	 {
+		 include("my_account.php");
+	 }
      if(isset($_GET['insert_product']))
 	 {
 		 include("insert_product.php");
@@ -51,7 +56,7 @@
 	  if(isset($_GET['edit_cat']))
 	 {
 		 include("edit_cat.php");
-	 }
+	 }	 
    ?>
  </div>
  </div>

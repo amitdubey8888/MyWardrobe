@@ -4,9 +4,7 @@ window.onclick = function(event) {
         modal.style.display = "none";
     }
 }
-</script>
 
-<script>
 var modal = document.getElementById('id02');
 window.onclick = function(event) {
     if (event.target == modal) {

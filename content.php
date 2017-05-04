@@ -42,7 +42,7 @@
 
        <div class="container" style="background-color:#f1f1f1">
          <button type="button" onclick="document.getElementById('id02').style.display='none'" class="cancelbtn2">Cancel</button>
-         <span class="psw">Forgot <a href="#">password?</a></span>
+         <span class="psw">Forgot <a href="forgot_password.php">password?</a></span>
        </div>
      </form>
 </div>

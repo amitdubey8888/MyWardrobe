@@ -10,17 +10,22 @@
 <html>
 <head>
   <title>Inserting Item</title>
+  <style>
+  td{
+  padding-top: 17px;
+  }
+  </style>
 </head>
 <body bgcolor="skyblue">
 <form action="" method="post" enctype="multipart/form-data">
-  <table align="center" width="795" border="2" bgcolor="orange">
+  <table align="center" width="795" height="306" border="2" bgcolor="orange">
    <tr align="center">   
      <td colspan="6"><h2>Insert New Item Here</h2></td>
    </tr>
    <tr>
      <td align="right"><b>Item Category:</b></td>
 	 <td>
-	     <select name="item_category" required>
+	     <select name="item_category" required="required">
 	         <option>Select a Category</option>
 	         <?php
 			 $get_category="SELECT * FROM categories where customer_email='$user_email'";
@@ -37,7 +42,7 @@
    </tr>
    <tr>
      <td align="right"><b>Item Discription:</b></td>
-	 <td><textarea name="item_description"></textarea></td>
+	 <td><textarea name="item_description" required="required"></textarea></td>
    </tr>
    <tr>
      <td align="right"><b>Item Picture:</b></td>
@@ -45,10 +50,10 @@
    </tr>
    <tr>
      <td align="right"><b>Item Status:</b></td>
-	 <td><input type="text" name="item_status" required/></td>
+	 <td><input type="text" name="item_status" required="required"/></td>
    </tr>
    <tr align="center">
-	 <td colspan="6"><input type="submit" name="insert_post" value="Insert Now"/></td>
+	 <td colspan="4"><input type="submit" name="insert_post" value="Insert Now"/></td>
    </tr>
   </table>
 </form>
